@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FlyFood.DAO.Service
 {
-    class FileHelper<T>
+    public class FileHelper<T>
     {
         private const string PATH = @"Files\\Data\\";
         private List<string> primarysKey = new List<string>() { "id", "codigo", "cod" };
