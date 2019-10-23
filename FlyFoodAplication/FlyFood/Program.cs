@@ -77,7 +77,34 @@ opção: ";
 
         public static void Cadastro()
         {
-            // Realizar Lógica
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Cliente cliente = new Cliente();
+            try
+            {
+                Console.Write("Digite o seu nome: ");
+                cliente.Nome = Console.ReadLine();
+                Console.Write("Digite o seu email: ");
+                cliente.Email = Console.ReadLine();
+                Console.Write("Digite a sua senha: ");
+                cliente.Senha = Console.ReadLine();
+                bool resultado = Cliente.RealizarCadastro(cliente);
+                if (resultado)
+                {
+                    Console.WriteLine("Vc foi cadastrado com sucesso. ");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Deu ruin man");
+                }
+            }
+            catch (Exception)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Erro na obtenção de dados");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            }
+            cliente.TipoCliente = TipoClienteEnum.CLIENTE;
         }
 
         static void Main(string[] args)
@@ -105,6 +132,7 @@ opção: ";
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         break;
                     default:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Opcao invalida, tente novamente");
                         break;
                 }
