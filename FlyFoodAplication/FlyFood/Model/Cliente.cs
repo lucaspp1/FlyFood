@@ -33,6 +33,7 @@ namespace FlyFood.Model
             if (clienteEncontrado)
                 Program.clienteLogado = ClientesEncontrados[0]; // pega o primeiro cliente que achou na busca
             return clienteEncontrado;
+
         }
 
         public static bool RealizarCadastro(Cliente cliente)
@@ -56,6 +57,7 @@ namespace FlyFood.Model
                 bool resultadoInsercao = fileHelper.Insert(cliente, out string _); // inserir usuario
                 return resultadoInsercao;
             }
+
 
         }
 

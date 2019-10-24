@@ -37,15 +37,14 @@ opção: ";
 
         public static void ChamarTelaCliente()
         {
+            TelaCliente tela = new TelaCliente();
             if (clienteLogado.TipoCliente == TipoClienteEnum.CLIENTE)
             {
-                // chamar tela do cliente
-                Console.WriteLine("Tela do cliente");
+                tela.MostrarTelaCliente();
             }
             else
             {
-                Console.WriteLine("Tela do Administrador");
-                // chamar tela do adiministrador
+                tela.MostrarTelaAdm();
             }
         }
 
