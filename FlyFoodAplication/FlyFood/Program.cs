@@ -127,12 +127,12 @@ opção: ";
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.Write("FlyFood ");
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("S2 \n");
+                        Console.Write(":) \n");
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Opcao invalida, tente novamente");
+                        Console.WriteLine("Opcao inválida, tente novamente");
                         break;
                 }
                 Console.WriteLine("pressione uma tecla para continuar ... ");

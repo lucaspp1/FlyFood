@@ -18,16 +18,14 @@ namespace FlyFood
                 voo.Decolagem = DateTime.Parse(Console.ReadLine());
                 Console.WriteLine("Insira a duração em hroas: ");
                 voo.TempoVoo = int.Parse(Console.ReadLine());
-                Console.WriteLine("Insira o ");
+                Console.WriteLine("Insira o companhia aérea");
                 voo.Aviao = Console.ReadLine();
-                Console.WriteLine("Insira o ");
+                Console.WriteLine("Insira a origem");
                 voo.Origem = Console.ReadLine();
-                Console.WriteLine("Insira o ");
+                Console.WriteLine("Insira o destino");
                 voo.Destino = Console.ReadLine();
-                Console.WriteLine("Insira o ");
-                voo.NomePiloto = Console.ReadLine();
                 new FileHelper<Voo>().Insert(voo, out string _ );
-                Console.WriteLine("voo Inserido co sucesso");
+                Console.WriteLine("voo Inserido com sucesso");
             }
             catch (Exception ex)
             {
@@ -74,9 +72,10 @@ namespace FlyFood
                 }
                 else
                 {
-                    Console.WriteLine("  Insira a quantidade de lanche ");
+                    Console.WriteLine(" Insira a quantidade de lanche ");
                     int quantidade = int.Parse(Console.ReadLine());
                     lancheVoo.Quantidade = quantidade;
+                    new FileHelper<Lanche_Voo>().Insert(lancheVoo, out string _);
                 }
             }
             catch (Exception ex)
@@ -92,7 +91,7 @@ namespace FlyFood
             {
                 Console.WriteLine("Insira o nome do produto: ");
                 lanche.Nome = Console.ReadLine();
-                Console.WriteLine("Insira o nome do produto: ");
+                Console.WriteLine("Insira o preço do produto: "); 
                 lanche.Preco = float.Parse(Console.ReadLine());
                 new FileHelper<Lanche>().Insert(lanche, out string _);
             }
@@ -114,6 +113,7 @@ opção: ";
             string opcao = "";
             while (opcao != "3")
             {
+                Console.Clear();
                 Console.WriteLine(menu);
                 opcao = Console.ReadLine();
                 switch (opcao)
@@ -131,7 +131,7 @@ opção: ";
                         Console.WriteLine("Logou :)");
                         break;
                     default:
-                        Console.WriteLine("Opção Inváliad");
+                        Console.WriteLine("Opção Inválida");
                         break;
                 }
 
@@ -140,10 +140,10 @@ opção: ";
         
         public void ComprarPassagem()
         {
-            List<Voo> listaVoo = new FileHelper<Voo>().select();
-            List<Passagem> passagensUsuario = new FileHelper<Passagem>().select().FindAll(o => o.Cliente == Program.clienteLogado.Id);
-            List<Voo> listaVooComprados = listaVoo.FindAll( voo => passagensUsuario.Exists( passagem => passagem.Voo == voo.Id) );
-            listaVoo.RemoveAll(voo => listaVooComprados.Exists( vooComprado => vooComprado.Id == voo.Id));
+            List<Voo> listaVoo = new FileHelper<Voo>().select(); // todos os voos
+            List<Passagem> passagensUsuario = new FileHelper<Passagem>().select().FindAll(o => o.Cliente == Program.clienteLogado.Id); // passagens do usuario
+            List<Voo> listaVooComprados = listaVoo.FindAll( voo => passagensUsuario.Exists( passagem => passagem.Voo == voo.Id) ); // voos comprados pelo usuario
+            listaVoo.RemoveAll(voo => listaVooComprados.Exists( vooComprado => vooComprado.Id == voo.Id)); // tirar voos comprados do usuario
             if (listaVoo.Count > 0)
             {
                 Console.WriteLine("Selecione um Voo");
@@ -160,7 +160,7 @@ opção: ";
             }
             else
             {
-                Console.WriteLine("Nenhum Voo disponivel");
+                Console.WriteLine("Nenhum Voo disponível");
             }
         }
         public void entrarVoo()
@@ -180,6 +180,7 @@ opção: ";
             string opcao = "";
             while (opcao != "3")
             {
+                Console.Clear();
                 Console.WriteLine(menu);
                 opcao = Console.ReadLine();
                 switch (opcao)
