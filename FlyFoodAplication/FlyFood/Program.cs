@@ -78,6 +78,8 @@ opção: ";
         public static void Cadastro()
         {
             // Realizar Lógica
+
+
         }
 
         static void Main(string[] args)

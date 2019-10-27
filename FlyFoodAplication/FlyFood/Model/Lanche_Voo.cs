@@ -6,8 +6,8 @@ namespace FlyFood.Model
 {
     public class Lanche_Voo
     {
-        public Lanche Lanche { get; set; }
-        public Voo Voo { get; set; }
+        public int Lanche { get; set; }
+        public int Voo { get; set; }
         public int Quantidade { get; set; }
         public int Id { get; set; }
 
