@@ -16,7 +16,7 @@ namespace FlyFood
             {
                 Console.WriteLine("Insira a data de decolagem");
                 voo.Decolagem = DateTime.Parse(Console.ReadLine());
-                Console.WriteLine("Insira a duração em hroas: ");
+                Console.WriteLine("Insira a duração em horas: ");
                 voo.TempoVoo = int.Parse(Console.ReadLine());
                 Console.WriteLine("Insira o companhia aérea");
                 voo.Aviao = Console.ReadLine();
