@@ -11,7 +11,7 @@ namespace FlyFood.Model
         public string Aviao{ get; set; }
         public string Origem { get; set; }
         public string Destino { get; set; }
-        public string NomePiloto { get; set; }
+
         public int Id { get; set; }
 
     }

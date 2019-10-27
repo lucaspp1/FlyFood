@@ -28,17 +28,40 @@ namespace FlyFood.Model
         public static bool RealizarLogin(string email, string senha)
         {
             List<Cliente> listaClientes = fileHelper.select(); // Busca todos os clientes no arquivo json
-            List<Cliente> ClientesEncontraods = listaClientes.FindAll(o => o.Email.Equals(email) && o.Senha.Equals(senha)); // peg todos os clientes que tem o email e a senha definidas
-            bool clienteEncontrado = ClientesEncontraods.Count > 0; // variavel para guardar se encontrou algum cliente
+            List<Cliente> ClientesEncontrados = listaClientes.FindAll(o => o.Email.Equals(email) && o.Senha.Equals(senha)); // peg todos os clientes que tem o email e a senha definidas
+            bool clienteEncontrado = ClientesEncontrados.Count > 0; // variavel para guardar se encontrou algum cliente
             if (clienteEncontrado)
-                Program.clienteLogado = ClientesEncontraods[0]; // pega o primeiro cliente que achou na busca
+                Program.clienteLogado = ClientesEncontrados[0]; // pega o primeiro cliente que achou na busca
             return clienteEncontrado;
+
         }
 
         public static bool RealizarCadastro(Cliente cliente)
         {
-            // Realizar a lógica ainda
-            return false;
+            List<Cliente> listaUsuario = fileHelper.select(); // pego todos os usuario da arquivo
+
+            bool existeEmail = false;
+            for (int i = 0; i < listaUsuario.Count; i++) // percorrer cada usuario
+            {
+                if (listaUsuario[i].Email == cliente.Email) // verificar se o email do usuario existe em algum usuario da lista
+                {
+                    existeEmail = true;
+                }
+            }
+            if (existeEmail) // verificar condicao acima
+            {
+                return false;
+            }
+            else
+            {
+                bool resultadoInsercao = fileHelper.Insert(cliente, out string _); // inserir usuario
+                return resultadoInsercao;
+            }
+
+
         }
+
+
+
     }
 }

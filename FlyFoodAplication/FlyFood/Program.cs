@@ -37,15 +37,14 @@ opção: ";
 
         public static void ChamarTelaCliente()
         {
+            TelaCliente tela = new TelaCliente();
             if (clienteLogado.TipoCliente == TipoClienteEnum.CLIENTE)
             {
-                // chamar tela do cliente
-                Console.WriteLine("Tela do cliente");
+                tela.MostrarTelaCliente();
             }
             else
             {
-                Console.WriteLine("Tela do Administrador");
-                // chamar tela do adiministrador
+                tela.MostrarTelaAdm();
             }
         }
 
@@ -77,9 +76,40 @@ opção: ";
 
         public static void Cadastro()
         {
+<<<<<<< HEAD
             // Realizar Lógica
 
 
+=======
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Cliente cliente = new Cliente();
+            try
+            {
+                Console.Write("Digite o seu nome: ");
+                cliente.Nome = Console.ReadLine();
+                Console.Write("Digite o seu email: ");
+                cliente.Email = Console.ReadLine();
+                Console.Write("Digite a sua senha: ");
+                cliente.Senha = Console.ReadLine();
+                bool resultado = Cliente.RealizarCadastro(cliente);
+                if (resultado)
+                {
+                    Console.WriteLine("Vc foi cadastrado com sucesso. ");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Deu ruin man");
+                }
+            }
+            catch (Exception)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Erro na obtenção de dados");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            }
+            cliente.TipoCliente = TipoClienteEnum.CLIENTE;
+>>>>>>> 75cb08a5791f0a82b19125710d2f0b06dc1ed4ab
         }
 
         static void Main(string[] args)
@@ -103,11 +133,12 @@ opção: ";
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.Write("FlyFood ");
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("S2 \n");
+                        Console.Write(":) \n");
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         break;
                     default:
-                        Console.WriteLine("Opcao invalida, tente novamente");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Opcao inválida, tente novamente");
                         break;
                 }
                 Console.WriteLine("pressione uma tecla para continuar ... ");
