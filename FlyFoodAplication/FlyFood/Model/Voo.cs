@@ -16,12 +16,14 @@ namespace FlyFood.Model
 
         public string detalhesVoo()
         {
-            return $" {this.Id} - {this.Origem} até {this.Destino} ({this.Companhia}) \n \t {this.TempoVoo} horas de viagem ";
+            string horas = TempoVoo == 1 ? "hora" : "horas";
+            return $" {this.Id} - {this.Origem} até {this.Destino} ({this.Companhia}) \n \t {this.TempoVoo} {horas} de viagem aproximadamente";
         }
 
         public string detalhesVoo(bool adm)
         {
-            return adm ? $"{this.Origem} até {this.Destino} ({this.Companhia}) \n \t {this.TempoVoo} horas de viagem no dia {this.Decolagem.ToString("dd/MM/yyyy")} " : detalhesVoo();
+            string horas = TempoVoo == 1 ? "hora" : "horas";
+            return adm ? $"{this.Origem} até {this.Destino} ({this.Companhia}) \n \t {this.TempoVoo} {horas} de viagem aproximadamente, no dia {this.Decolagem.ToString("dd/MM/yyyy")} " : detalhesVoo();
         }
 
         public bool validoParaDecolar()
@@ -29,9 +31,7 @@ namespace FlyFood.Model
             DateTime now = DateTime.Now;
             return Decolagem.Day == now.Day &&
                     Decolagem.Month == now.Month &&
-                    Decolagem.Year == now.Year;
-
-
+                    Decolagem.Year == now.Year
                 ;
         }
 
