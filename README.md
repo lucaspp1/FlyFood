@@ -8,3 +8,5 @@
 ## Dependências
 o projeto depende da biblioteca Newtonsoft.Json (https://www.newtonsoft.com/json) disponibilizada por James Newton-King, facilmente encontrada no Nuget
 
+## Obsevações
+ - usuário de nível administrador é criado automaticamente no início do programa (login: adm, senha: adm)
