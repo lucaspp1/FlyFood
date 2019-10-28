@@ -104,6 +104,11 @@ opção: ";
 
         static void Main(string[] args)
         {
+            if ( !new FileHelper<Cliente>().select().Exists( o => o.TipoCliente == TipoClienteEnum.ADMINISTRADOR ) )
+            {
+                Cliente c = new Cliente("adm", "adm", "adm", 1, TipoClienteEnum.ADMINISTRADOR);
+                new FileHelper<Cliente>().Insert(c, out string _);
+            }
             int resultado = 0;
             while(resultado != 3)
             {

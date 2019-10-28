@@ -69,6 +69,7 @@ namespace FlyFood.DAO.Service
             try
             {
                 List<string> listContent = new List<string>();
+                
                 foreach (T item in genericObjects)
                 {
                     T newObject = AlterIdInGeneric(item, listContent.Count + 1);
@@ -77,6 +78,7 @@ namespace FlyFood.DAO.Service
                 string path = getPath(typeof(T).Name);
                 File.WriteAllLines(path, listContent);
                 result = $"Lista de {typeof(T).Name} inserido com sucesso";
+                new FileStream("", FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write);
                 return true;
             }
             catch (Exception ex)

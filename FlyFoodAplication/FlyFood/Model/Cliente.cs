@@ -24,6 +24,15 @@ namespace FlyFood.Model
             this.TipoCliente = TipoClienteEnum.CLIENTE;
         }
 
+        public Cliente(string nome, string email, string senha, int id, TipoClienteEnum tipoCliente)
+        {
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+            Id = id;
+            TipoCliente = tipoCliente;
+        }
+
         // Método para verificar se existe algum cliente com o email e a senha
         public static bool RealizarLogin(string email, string senha)
         {
