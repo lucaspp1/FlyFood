@@ -40,10 +40,13 @@ opção: ";
             TelaCliente tela = new TelaCliente();
             if (clienteLogado.TipoCliente == TipoClienteEnum.CLIENTE)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 tela.MostrarTelaCliente();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.BackgroundColor = ConsoleColor.Cyan;
                 tela.MostrarTelaAdm();
             }
         }

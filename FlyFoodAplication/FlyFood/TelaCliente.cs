@@ -18,11 +18,11 @@ namespace FlyFood
                 voo.Decolagem = DateTime.Parse(Console.ReadLine());
                 Console.WriteLine("Insira a duração em horas: ");
                 voo.TempoVoo = int.Parse(Console.ReadLine());
-                Console.WriteLine("Insira o companhia aérea");
+                Console.WriteLine("Insira a companhia aérea");
                 voo.Aviao = Console.ReadLine();
-                Console.WriteLine("Insira a origem");
+                Console.WriteLine("Insira o local de origem");
                 voo.Origem = Console.ReadLine();
-                Console.WriteLine("Insira o destino");
+                Console.WriteLine("Insira o local de destino");
                 voo.Destino = Console.ReadLine();
                 new FileHelper<Voo>().Insert(voo, out string _ );
                 Console.WriteLine("voo Inserido com sucesso");
@@ -38,12 +38,23 @@ namespace FlyFood
             List<Voo> listaVoo = new FileHelper<Voo>().select();
             List<Lanche> listaLanche = new FileHelper<Lanche>().select();
             Lanche_Voo lancheVoo = new Lanche_Voo();
+            if (listaLanche.Count == 0)
+            {
+                Console.WriteLine("Não existe nenhum lanche, favor cadastrar um");
+                return;
+            }
+            if (listaVoo.Count == 0)
+            {
+                Console.WriteLine("Não existe nenhum Voo, favor cadastrar um");
+                return;
+            }
+
             try
             {
                 Console.WriteLine("  Selecione um voo ");
                 foreach (Voo voo in listaVoo)
                 {
-                    Console.WriteLine( $" {voo.Id} -`{voo.Decolagem} até ${voo.Destino} no dia ${voo.Decolagem.ToString("dd/mm/yyyy")} " );
+                    Console.WriteLine( $" {voo.Id} -`{voo.Origem} até ${voo.Destino} no dia ${voo.Decolagem.ToString("dd/mm/yyyy")} " );
                 }
                 int idVoo = int.Parse(Console.ReadLine());
                 while ( listaVoo.FindAll( o => o.Id == idVoo).Count <= 0 )
@@ -155,8 +166,12 @@ opção: ";
                 while ( !listaVoo.Exists( o => o.Id == idVoo) )
                 {
                     Console.WriteLine("Digite um valor válido");
+                    idVoo = int.Parse(Console.ReadLine());
                 }
-                idVoo = int.Parse(Console.ReadLine());
+                Passagem passagem = new Passagem();
+                passagem.Cliente = Program.clienteLogado.Id;
+                passagem.Voo = idVoo;
+                new FileHelper<Passagem>().Insert(passagem, out string _);
             }
             else
             {
@@ -165,7 +180,41 @@ opção: ";
         }
         public void entrarVoo()
         {
-
+            List<Passagem> passagensDoCliente = new FileHelper<Passagem>().select().FindAll( passagem => passagem.Cliente == Program.clienteLogado.Id );
+            List<Voo> listaDeVoo = new FileHelper<Voo>().select(); // todos os voos
+            try
+            {
+                List<Voo> listaVooCliente = new List<Voo>();
+                foreach (Voo voo in listaDeVoo)
+                {
+                    if (passagensDoCliente.Exists( passagem => passagem.Voo == voo.Id))
+                        listaVooCliente.Add(voo);
+                }
+                DateTime dt = DateTime.Now;
+                listaVooCliente = listaVooCliente.FindAll( o => o.Decolagem.CompareTo(DateTime.Now) >= 0);
+                if (listaVooCliente.Count == 0)
+                {
+                    Console.WriteLine("Nenhum Voo disponivel \n digite algo para continuar");
+                    Console.ReadKey();
+                    return;
+                }
+                Console.WriteLine("Escolha um voo para entrar: ");
+                foreach (Voo voo in listaVooCliente)
+                {
+                    Console.WriteLine($" {voo.Id} - {voo.Origem} até {voo.Destino} ");
+                }
+                int idVoo = int.Parse(Console.ReadLine());
+                while (!listaVooCliente.Exists( voo => voo.Id == idVoo))
+                {
+                    Console.WriteLine("Insira um voo válido");
+                    idVoo = int.Parse(Console.ReadLine());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.Message + "\n\n Digite algo para continuar");
+                Console.ReadKey();
+            }
         }
 
         /* MÉTODOS DO CLIENTE */
