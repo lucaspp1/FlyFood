@@ -79,6 +79,11 @@ opção: ";
 
         public static void Cadastro()
         {
+<<<<<<< HEAD
+            // Realizar Lógica
+
+
+=======
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Cliente cliente = new Cliente();
             try
@@ -107,6 +112,7 @@ opção: ";
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
             }
             cliente.TipoCliente = TipoClienteEnum.CLIENTE;
+>>>>>>> 75cb08a5791f0a82b19125710d2f0b06dc1ed4ab
         }
 
         static void Main(string[] args)
