@@ -117,13 +117,9 @@ opção: ";
                 Console.Clear();
                 resultado = EscolhaInicial();
                 if (resultado == 1)
-                {
                     EscolherLanche();
-                }
                 else if(resultado != 2)
-                {
                     Console.WriteLine("Escolha inválida");
-                }
             }
         }
     }
