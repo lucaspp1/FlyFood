@@ -10,5 +10,6 @@ namespace FlyFood.Model
         public int Voo { get; set; }
         public int Quantidade { get; set; }
         public int Id { get; set; }
+
     }
 }
