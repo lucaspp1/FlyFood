@@ -1,0 +1,22 @@
+ * features do sistemna:
+ 
+	-> Sistema de milhas
+		* A cada viagem realizada o usuário pontua, podendo trocar esses pontos por descontos em passagens
+		* A o valor da milha é calculada a partir da distância do trajeto
+		* A pontuação de milhas será visualizado no perfil, e será acumulada a cada viagem
+		
+	-> check in
+		* O checkIn deverá ser feito até 15 minutos antes da decolagem do avião
+		* deverá selecionar o assento do Voô
+		
+	-> Histórico de relatório (html)
+		* O histórico terá todas as passagens detalhadas que o cliente já realizou
+		* O cliente poderá visualizar seu relatório na aba de perfil
+		
+	-> Painel de Voo
+		* O painel de voo terá todos os Voos próximos da hora de decolagem (Confirmados)
+			informações:
+				-> Compania
+				-> Id
+				-> Destino
+				-> Hora de partida
