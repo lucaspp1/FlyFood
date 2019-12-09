@@ -9,7 +9,7 @@ namespace FlyFood.DAO.Service
 {
     public class FileHelper<T>
     {
-        private const string PATH = @"Files\\Data\\";
+        private static string PATH = "Files"+Path.DirectorySeparatorChar.ToString()+"Data"+Path.DirectorySeparatorChar.ToString();
         private List<string> primarysKey = new List<string>() { "id", "codigo", "cod" };
 
         public bool Delete(List<T> listGenericObject)

@@ -1,36 +1,29 @@
-﻿using FlyFood.DAO.Service;
+using FlyFood.DAO.Service;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FlyFood.Model
 {
-    public class Cliente : Usuario
+    public class Adm : Usuario
     {
-        public static FileHelper<Cliente> fileHelper = new FileHelper<Cliente>();
-        public string Nome { get; set; }
-        public string Cpf { get; set; }
-        public char Genero { get; set; }
-        public DateTime Nascimento { get; set; }
-        public Cliente() : base()
+        public static FileHelper<Adm> fileHelper = new FileHelper<Adm>();
+
+        public Adm()
         {
             
         }
 
-        public Cliente(string nome, string email, string senha, int id, string cpf, char genero, DateTime nascimento) :
+        public Adm(string email, string senha, int id) :
         base(email, senha, id)
         {
-            this.Nome = nome;
-            this.Cpf = cpf;
-            this.Genero = genero;
-            this.Nascimento = nascimento;
+            
         }
 
-        // Método para verificar se existe algum cliente com o email e a senha
         public static bool RealizarLogin(string email, string senha)
         {
-            List<Cliente> listaClientes = fileHelper.select(); // Busca todos os clientes no arquivo json
-            List<Cliente> ClientesEncontrados = listaClientes.FindAll(o => o.Email.Equals(email) && o.Senha.Equals(senha)); // peg todos os clientes que tem o email e a senha definidas
+            List<Adm> listaClientes = fileHelper.select(); // Busca todos os clientes no arquivo json
+            List<Adm> ClientesEncontrados = listaClientes.FindAll(o => o.Email.Equals(email) && o.Senha.Equals(senha)); // peg todos os clientes que tem o email e a senha definidas
             bool clienteEncontrado = ClientesEncontrados.Count > 0; // variavel para guardar se encontrou algum cliente
             if (clienteEncontrado)
                 Program.clienteLogado = ClientesEncontrados[0]; // pega o primeiro cliente que achou na busca
@@ -38,9 +31,9 @@ namespace FlyFood.Model
 
         }
 
-        public static bool RealizarCadastro(Cliente cliente)
+        public static bool RealizarCadastro(Adm cliente)
         {
-            List<Cliente> listaUsuario = fileHelper.select(); // pego todos os usuario da arquivo
+            List<Adm> listaUsuario = fileHelper.select(); // pego todos os usuario da arquivo
 
             bool existeEmail = false;
             for (int i = 0; i < listaUsuario.Count; i++) // percorrer cada usuario
@@ -61,6 +54,5 @@ namespace FlyFood.Model
             }
 
         }
-
     }
 }

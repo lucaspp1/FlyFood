@@ -8,7 +8,7 @@ namespace FlyFood
 {
     class Program
     {
-        public static Cliente clienteLogado = null;
+        public static Usuario clienteLogado = null;
 
         public static int EscolhaInicial()
         {
@@ -35,13 +35,13 @@ opção: ";
 
         }
 
-        public static void ChamarTelaCliente()
+        public static void ChamarTela(Boolean isAdm)
         {
             TelaCliente tela = new TelaCliente();
-            if (clienteLogado.TipoCliente == TipoClienteEnum.CLIENTE)
-                tela.MostrarTelaCliente();
-            else
+            if (isAdm)
                 tela.MostrarTelaAdm();
+            else
+                tela.MostrarTelaCliente();
         }
 
         public static void Login()
@@ -56,10 +56,13 @@ opção: ";
                 bool loginSucesso = Cliente.RealizarLogin(email, senha);
                 if (loginSucesso)
                 {
-                    ChamarTelaCliente();
+                    ChamarTela(isAdm: false);
                 }
                 else
                 {
+                    if(Adm.RealizarLogin(email, senha)){
+                        ChamarTela(isAdm: true);    
+                    }
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Login Incorreto");
                 }
@@ -82,6 +85,13 @@ opção: ";
                 cliente.Email = Console.ReadLine();
                 Console.Write("Digite a sua senha: ");
                 cliente.Senha = Console.ReadLine();
+                Console.Write("Digite o seu Cpf: ");
+                cliente.Cpf = Console.ReadLine();
+                Console.Write("Digite a sua data de nascimento: ");
+                cliente.Nascimento = DateTime.Parse(Console.ReadLine());
+                Console.Write("Digite o seu gênero (M/F): ");
+                cliente.Genero = char.Parse(Console.ReadLine());
+
                 bool resultado = Cliente.RealizarCadastro(cliente);
                 if (resultado)
                 {
@@ -99,15 +109,14 @@ opção: ";
                 Console.Write("Erro na obtenção de dados");
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
             }
-            cliente.TipoCliente = TipoClienteEnum.CLIENTE;
         }
 
         static void Main(string[] args)
         {
-            if ( !new FileHelper<Cliente>().select().Exists( o => o.TipoCliente == TipoClienteEnum.ADMINISTRADOR ) )
+            if ( new FileHelper<Adm>().select().Count == 0 )
             {
-                Cliente c = new Cliente("adm", "adm", "adm", 1, TipoClienteEnum.ADMINISTRADOR);
-                new FileHelper<Cliente>().Insert(c, out string _);
+                Adm adm = new Adm("adm", "adm", 1);
+                new FileHelper<Adm>().Insert(adm, out string _);
             }
             int resultado = 0;
             while(resultado != 3)
