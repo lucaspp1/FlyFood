@@ -1,5 +1,5 @@
 -> O checkIn deverá ser feito até 15 minutos antes da decolagem do avião
--> Checkin deverá estar dentro da passagem
+-> Checkin deverá estar dentro da passagem 
 -> deverá selecionar o assento do Voô
 	* Lista de assento no Voo será do tipo List<int> de 1 até 20
 	* A cada passagem comprada deverá remover o número selecionado
