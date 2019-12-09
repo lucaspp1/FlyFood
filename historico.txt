@@ -1,7 +1,7 @@
 -> Histórico de relatório (html ou não)
-	* O histórico terá todas as passagens detalhadas que o cliente já realizou
-	* O cliente poderá visualizar seu relatório na aba de perfil
-	* Criar aba de perfil que irá conter os dadso do usuário e todas as viagens dele
+	* O histórico terá todas as passagens detalhadas que o cliente já realizou // thamyris
+	* O cliente poderá visualizar seu relatório na aba de perfil // thamyris
+	* Criar aba de perfil que irá conter os dados do usuário e todas as viagens dele // thamyris
 	-> dados do perfil
 		* Nome
 		* CPF

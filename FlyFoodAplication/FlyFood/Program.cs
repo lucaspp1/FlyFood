@@ -62,9 +62,10 @@ opção: ";
                 {
                     if(Adm.RealizarLogin(email, senha)){
                         ChamarTela(isAdm: true);    
+                    }else{
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Login Incorreto");
                     }
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Login Incorreto");
                 }
             }
             catch (Exception e)

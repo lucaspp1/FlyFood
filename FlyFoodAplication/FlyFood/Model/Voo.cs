@@ -12,8 +12,10 @@ namespace FlyFood.Model
         public string Companhia { get; set; }
         public string Origem { get; set; }
         public string Destino { get; set; }
-
         public int Id { get; set; }
+
+        public Voo(){
+        }
 
         public static void EntrarVoo()
         {

@@ -21,22 +21,27 @@ namespace FlyFood.Model
             listaVoo.RemoveAll(voo => listaVooComprados.Exists(vooComprado => vooComprado.Id == voo.Id)); // tirar voos comprados do usuario
             if (listaVoo.Count > 0)
             {
-                Console.WriteLine("lista de Voos disponíveis");
-                foreach (Voo voo in listaVoo)
-                {
-                    Console.WriteLine(voo.detalhesVoo());
+                try{
+                    Console.WriteLine("lista de Voos disponíveis");
+                    foreach (Voo voo in listaVoo)
+                    {
+                        Console.WriteLine(voo.detalhesVoo());
+                    }
+                    Console.Write("Selecione um Voo: ");
+                    int idVoo = int.Parse(Console.ReadLine());
+                    while (!listaVoo.Exists(o => o.Id == idVoo))
+                    {
+                        Console.WriteLine("Digite um Voo válido: ");
+                        idVoo = int.Parse(Console.ReadLine());
+                    }
+                    Passagem passagem = new Passagem();
+                    passagem.Cliente = Program.clienteLogado.Id;
+                    passagem.Voo = idVoo;
+                    FileHelperPassagem.Insert(passagem, out string _);
+                }catch(Exception){
+                    Console.WriteLine("Erro ao selecionar um Voo \n digite algo para continuar");
+                    Console.ReadKey();
                 }
-                Console.Write("Selecione um Voo: ");
-                int idVoo = int.Parse(Console.ReadLine());
-                while (!listaVoo.Exists(o => o.Id == idVoo))
-                {
-                    Console.WriteLine("Digite um valor válido: ");
-                    idVoo = int.Parse(Console.ReadLine());
-                }
-                Passagem passagem = new Passagem();
-                passagem.Cliente = Program.clienteLogado.Id;
-                passagem.Voo = idVoo;
-                FileHelperPassagem.Insert(passagem, out string _);
             }
             else
             {
