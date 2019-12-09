@@ -1,4 +1,0 @@
--> deverá selecionar o assento do Voô // lucas
-	* Lista de assento no Voo será do tipo List<int> de 1 até 20 // lucas
-	* A cada passagem comprada deverá remover o número selecionado // lucas
-	* Deverá selecioanr somente os números disponiveis // lucas

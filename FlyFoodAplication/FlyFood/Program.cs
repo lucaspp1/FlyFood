@@ -96,18 +96,18 @@ opção: ";
                 bool resultado = Cliente.RealizarCadastro(cliente);
                 if (resultado)
                 {
-                    Console.WriteLine("Vc foi cadastrado com sucesso. ");
+                    Console.WriteLine("Você foi cadastrado com sucesso. ");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Deu ruin man");
+                    Console.WriteLine("Erro ao cadastrar usuário.");
                 }
             }
             catch (Exception)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("Erro na obtenção de dados");
+                Console.Write("Erro na obtenção de dados.");
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
             }
         }

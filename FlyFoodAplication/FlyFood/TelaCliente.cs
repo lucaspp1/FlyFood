@@ -60,10 +60,11 @@ opção: ";
 seleciona uma das opções:
     1) comprar Passagem em um voo
     2) Entrar um Voo
-    3) Sair
+    3) Perfil
+    4) Sair
 opção: ";
             string opcao = "";
-            while (opcao != "3")
+            while (opcao != "4")
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Clear();
@@ -78,12 +79,17 @@ opção: ";
                         Voo.EntrarVoo();
                         break;
                     case "3":
-                        Console.WriteLine("Logout :)");
+                        ((Cliente)Program.clienteLogado).MostrarPerfil();
+                        break;
+                    case "4":
+                        Console.WriteLine("Logout");
                         break;
                     default:
                         Console.WriteLine("Opção Inválida");
                         break;
                 }
+                Console.WriteLine("pressione uma tecla para continuar ... ");
+                Console.ReadKey();
             }
         }
 

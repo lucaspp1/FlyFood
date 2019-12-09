@@ -14,7 +14,7 @@ namespace FlyFood.Model
         public DateTime Nascimento { get; set; }
         public Cliente() : base()
         {
-            
+                
         }
 
         public Cliente(string nome, string email, string senha, int id, string cpf, char genero, DateTime nascimento) :
@@ -60,6 +60,34 @@ namespace FlyFood.Model
                 return resultadoInsercao;
             }
 
+        }
+        public void MostrarPerfil()
+        {
+            Console.WriteLine("Nome: " + this.Nome);
+            Console.WriteLine("CPF: " + this.Cpf);
+            Console.WriteLine("Gênero: " + this.Genero);
+            Console.WriteLine("Data de Nascimento: " + this.Nascimento.ToString("dd/MM/yyyy"));
+
+            List<Passagem> passagens = new FileHelper<Passagem>().select();
+            List<Voo> voos = new FileHelper<Voo>().select();
+
+            foreach (Passagem item in passagens)
+            {
+                if (item.Cliente == this.Id)
+                {
+                    foreach (Voo passagemVoo in voos)
+                    {
+                        if (passagemVoo.Id == item.Voo)
+                        {
+                            Console.WriteLine("Id:" + passagemVoo.Id);
+                            Console.WriteLine("Origem:" + passagemVoo.Origem);
+                            Console.WriteLine("Destino:" + passagemVoo.Destino);
+                            Console.WriteLine("Companhia:" + passagemVoo.Companhia);
+                        }
+                    }
+                }
+                
+            }
         }
 
     }
